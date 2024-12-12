@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <!-- Style -->
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+
+    <!-- Style -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+   	<link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	
+  <style>
+    .checkOut__left .bookSlot .bookSlot__content .chooseSlot .picking .slot__picking .slot__row .slot__item {
+      font-size: 31px !important;
+      font-weight: 600 !important;
+    }
+    .item--blocked{
+      color: #FFFF !important;
+    }
+  </style>
+  <title>Sidebar #1</title>
+</head>
+
+<body>
+
+  <th:block lang="vi" th:include="fragments/admin/navigation :: navigation"></th:block>
+  
+  <main>
+    <div class="container-fluid bg-light">
+      <div class="bookTicket__content row mt-5" style="margin-top: 0!important;">
+        <div class="checkOut__left col-md-9 col-sm-12 p-0">
+          <div class="bookSlot">
+            <div class="poster__film"
+              style="width: 0;
+                      background-image: url(&quot;http://movie0706.cybersoft.edu.vn/hinhanh/john-wick-iiisssssssssxxxssssssssssssssssssss_gp09.jpg&quot;);">
+
+            </div>
+            <div class="bookSlot__content" style="overflow-x: scroll;">
+
+              <div class="chooseSlot" style="width: 850px">
+                <div class="screen__img"><img src="https://i.ibb.co/zWgWjtg/screen.png" alt="screen">
+                </div>
+                <div class="picking row" style="padding: 0 50px;">
+                  <div class="slot__picking col-12">
+                    <div class="slot__row">
+                    </div>
+                  </div>
+                </div>
+                <div class="slot__detail row">
+                  <div class="col-md-3 col-sm-6 col-xs-6"><i class="fa fa-couch item--regular"></i><span
+                      class="slot__text">Ghế thường</span></div>
+                  <div class="col-md-3 col-sm-6 col-xs-6"><i class="fa fa-couch item--vip"></i><span
+                      class="slot__text">Ghế Vip</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="checkOut__right col-md-3 col-sm-12" style="min-height: 700px;">
+          <div class="checkout__form" style="height: 350px">
+            <div class="film__info" style="margin:10px 20px 10px 0 ;">
+              <span class="film__age--C" style="font-size: large;">Select Branch</span>
+              <select name="" id="listBranch" class="form-control form-control-lg">
+              	<option value="0" selected disabled hidden>Select Branch</option>
+                <option th:each="branch: ${branches}" th:value="${branch.id}" th:text="${branch.name}"></option>
+              </select>
+            </div>
+            <div class="film__info" style="margin:10px 20px 10px 0 ;">
+              <span class="film__age--C" style="font-size: large;">Select Room</span>
+              <select name="" id="listRoom" class="form-control form-control-lg">
+              <option value="0" selected disabled hidden>Select Room</option>
+              </select>
+
+            </div>
+             <div id="info-room" class="film__info" style="margin:0px 20px 0 0 ; display:none;">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Phòng số</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>              
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Diện tích</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">URL image</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+            </div>
+            <div class="film__info" style="margin:10px 20px 10px 0 ;">
+              <span class="film__age--C" style="font-size: large;">Select Type Of Seat</span>
+              <span><i id="example-seat" class="fa fa-couch " style="color:#949494 ;"></i></span>
+              <select name="" id="listSeat" class="form-control form-control-lg">
+                <option value="1" data-class="fa fa-couch slot__item" 
+                	data-vip="0" data-active="1">Ghế Thường</option>
+                <option value="2" data-class="fa fa-couch slot__item item--vip" 
+                	data-vip="1" data-active="1">Ghế Vip</i></option>
+                <option value="0" data-class="fa fa-couch slot__item item--blocked"
+                	data-vip="0" data-active="0">Ghế Bị Khóa</i></option>
+              </select>
+
+            </div>
+            
+            <div id="btnUpdate" class="btnBook btn btn-primary" style="background-image: none;" data-toggle="modal"
+              data-target="#CreditModal">
+              SAVE</div>
+          </div>
+			<a th:href="@{/admin/rooms/add}" id="btnBook" class="btn btn-success"><i class="fa fa-plus"> ADD ROOM</i></a>
+			<button id="btnDelete" class="btn btn-danger" style="margin-left: 20px;display: none;">
+			<i class="fa fa-trash" aria-hidden="true">DELETE ROOM</i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="success" class="swal-overlay notify " tabindex="-1">
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--success">
+    <span class="swal-icon--success__line swal-icon--success__line--long"></span>
+    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
+
+    <div class="swal-icon--success__ring"></div>
+    <div class="swal-icon--success__hide-corners"></div>
+  </div><div class="swal-title" id="text-success"></div><div class="swal-text" style=""></div><div class="swal-footer"><div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+  <div id="error" class="swal-overlay notify" tabindex="-1" >
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--error">
+    <div class="swal-icon--error__x-mark">
+      <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+      <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+    </div>
+  </div>
+  	<div id="text-error" class="swal-title" ></div>
+  	<div class="swal-footer">
+  <div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+  <script th:src="@{/js/popper.min.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+  <script th:inline="javascript">
+  function callAPIGetRooms(){
+	  $.ajax({
+	      url: "http://localhost:8080/api/admin/rooms?branchId=" + $("#listBranch").find(":selected").val(),
+	      type: 'POST',
+          headers: {"Authorization": "Bearer "+[[${session.jwtResponse.accessToken}]]},
+          contentType: "application/json; charset=utf-8",
+	      success: function (data) {
+	          $("#listRoom").html('<option value="" selected disabled hidden>Select Room</option>');
+	          data.forEach(room => {
+	        	  
+	              $("#listRoom").append(
+	            	$('<option>', {
+	        		    'value':room['id'],
+	        		    'data-name': room['name'],
+	        		    'data-total-area': room['totalArea'],
+	        		    'data-img-url': room['imgURL'],
+	        		    'data-capacity': room['capacity'],
+	        		    html: room['name']
+	        		})
+	              )
+	          });
+	      },
+	      error: function(error){
+	    	  console.log(error)
+	      }
+	  }) 
+  }
+  function callAPIGetSeats(){
+	  $.ajax({
+	      url: "http://localhost:8080/api/admin/seats?roomId=" + $("#listRoom").find(":selected").val(),
+	      type: 'POST',
+          headers: {"Authorization": "Bearer "+[[${session.jwtResponse.accessToken}]]},
+          contentType: "application/json; charset=utf-8",
+	      success: function (data) {
+	          var slot=$(".slot__row");
+	          slot.html("");
+	          data.forEach(seat => {
+	        	  seat=$('<i>', {
+	        		  		'class':'fa fa-couch slot__item '+ (seat['active'] ? (seat['vip'] ? 'item--vip':''):'item--blocked'),
+	        		  		'data-id':seat['id'],
+	        		  		'data-name':seat['name'],
+	        		  		'data-value':(seat['active'] ? (seat['vip'] ? 2:1):0),
+	        		  		'data-status':(seat['active'] ? (seat['vip'] ? 2:1):0)
+	        	  			})
+	              slot.append(seat)
+	          });
+	      },
+	      error: function(error){
+	          console.log(error)
+	      }
+	  }) 
+  }
+  function callAPIDeleteRoom(){
+	  $.ajax({
+	      url: "http://localhost:8080/api/admin/rooms?roomId=" + $("#listRoom").find(":selected").val(),
+	      type: 'DELETE',
+          headers: {"Authorization": "Bearer "+[[${session.jwtResponse.accessToken}]]},
+          complete: function(mess) {
+			  if(mess.status==200){
+		          $(".slot__row").html("");
+		          $("#listRoom").find(":selected").replaceWith('<option value="0" selected disabled hidden>Select Room</option>');
+		          $("#listRoom").trigger('change');
+		          $("#btnDelete").css("display","");
+		          $("#info-room").css("display","");
+		          $("#text-success").html(mess.responseText)
+		          $("#success").addClass("swal-overlay--show-modal")  
+			  }else{
+				  $("#text-error").html(mess.responseText)
+	            	$("#error").addClass("swal-overlay--show-modal")
+			  }
+			  
+	      }
+	  }) 
+  }
+  function callAPIUpdateRoom(json){
+      $.ajax({
+          type: "PUT",
+          url: "http://localhost:8080/api/admin/rooms",
+          headers: {"Authorization": "Bearer "+[[${session.jwtResponse.accessToken}]]},
+          data: json,
+          contentType: "application/json; charset=utf-8",
+          success:function(data){
+          	//show notify
+          	$("#success").addClass("swal-overlay--show-modal")
+			$("#text-success").html(data)	
+          },
+          error: function (e) {
+          	$("#text-error").html(e.responseText)
+          	$("#error").addClass("swal-overlay--show-modal")
+            $("button").click(function(e){
+              	location.reload(true);
+              });
+          }
+         	});
+  }
+  $(document).ready(function() {
+	//gọi api lấy toàn bộ phòng của branch
+	$("#listBranch").on("change",function(){
+			callAPIGetRooms();
+			$("#btnDelete").css("display","none");
+			$("#info-room").css("display","none");
+			$(".checkout__form").css("min-height","");
+	})
+	//gọi api lấy toàn bộ ghế ngồi của phòng
+	$("#listRoom").on("change",function(){
+		callAPIGetSeats();
+		$("#btnDelete").css("display","");
+        infoRoom= $("#info-room input")
+        option=$(this).find(":selected")
+        infoRoom.eq(0).val(option.data('name'))
+        infoRoom.eq(1).val(option.data('totalArea'))
+        infoRoom.eq(2).val(option.data('imgUrl'))
+        infoRoom.eq(3).val(option.data('capacity'))
+		$("#info-room").css("display","");
+		$(".checkout__form").css("min-height","570px");
+	})
+	//thay đổi status của ghế ngồi muốn update
+    $('#listSeat').on('change', function() {
+      if($(this).val()==1) $("#example-seat").attr("style","color:#949494")
+      if($(this).val()==2) $("#example-seat").attr("style","color:#fb4226")
+      if($(this).val()==0) $("#example-seat").attr("style","color:#FFFF")
+    });
+	//thay đổi status của ghế và thêm vào dữ liệu ghế muốn update
+	capacity=$('#info-room input').eq(3)
+	$(document).on('click','.slot__item',function(){
+		selectSeat=$('#listSeat').find(':selected')
+    	//Đổi màu ghế
+    	$(this).attr("class", selectSeat.data("class"))
+    	//thay đổi status ghế
+		$(this).data('status',selectSeat.val())
+    })
+	//gọi api update phòng đã chọn
+	$("#btnUpdate").click(function(){
+		dataSeats=[]
+		roomId=$("#listRoom").val()
+		$(".slot__row i").each(function() {
+			if($(this).data('value')!=$(this).data('status')){
+				dataSeats.push({
+					'id':$(this).data('id'),
+					'name':$(this).data('name'),
+					'active':$(this).data('status')!=0,
+					'vip':$(this).data('status')==2,
+					'room':{
+						'id':roomId
+					}
+				})
+			}
+
+		})
+        data = JSON.stringify(
+    			{
+					'id':$('#listRoom').find(":selected").val(),
+					'imgURL':$('#info-room input').eq(2).val(),
+					'name':$('#info-room input').eq(0).val(),
+					'totalArea':$('#info-room input').eq(1).val(),
+					'capacity':capacity.val(),
+					'branch':{
+						'id':$('#listBranch').find(":selected").val()
+					},
+    				'seats':dataSeats
+    			
+    			});
+		console.log(data)
+		callAPIUpdateRoom(data);
+		dataSeats=[]
+	})
+    //gọi api xóa phòng đã chọn
+	$("#btnDelete").click(function(){
+		callAPIDeleteRoom();
+	})
+	//close notify
+    $(".notify").click(function(e){
+        $(this).removeClass("swal-overlay--show-modal");
+    });
+});
+  </script>
+</body>
+
+</html>

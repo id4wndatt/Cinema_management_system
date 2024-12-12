@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="favicon.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app"/>
+    <link rel="apple-touch-icon" href="logo192.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <title>CDD Movie</title>
+    <link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1073.0" data-gr-ext-installed=""><noscript>You need to enable JavaScript to run
+        this app.</noscript>
+    <div id="root">
+        <header lang="vi" th:include="fragments/header :: header"/>
+        <div class="container all-movie">
+            <div class="search" style="display:flex;
+            							justify-content: space-between;
+            							flex-wrap: wrap;">
+               <select class="form-select" name="status" form="form-search"
+               style="width:200px;font-size: 32px;color: #007aff;" >
+					<option value="" >Tất cả</option>
+					<option value="0" th:selected="(${status} == 0)">Sắp chiếu</option>
+					<option value="1" th:selected="(${status} == 1)">Đang chiếu</option>
+				</select>
+                <div id="wrap" style="width:500px">
+                    <form id="form-search" autocomplete="on" method="post" style="display: flex">
+                    	<input id="search" name="search" type="text" placeholder="Nhập tên phim cần tìm"
+                    	style="    max-width: 700px;
+    							width: -webkit-fill-available;
+   								 font-size: 40px;">
+
+                        <input id="search_submit" type="submit" style="z-index: 4">
+                            
+                         </form>
+                </div>
+            </div>
+
+            <div class="row movielist-content">
+                <div class="movie-card col-md-6 col-sm-12"  th:each="movie: ${movies}" th:object="${movie}">
+                	<a class="card-link" th:href="@{/movies/detail(movieId=*{id})}">
+                        <div class="card-content">
+                            <div class="content-left">
+                                <div class="left-header-movie">
+                                    <h1 class="movie-name" th:utext="*{name}"></h1>
+                                    <h4 class="group-id" th:utext="*{rated}"></h4>
+                                    <p class="during-time" th:utext="*{duration}+' phút'"></p>
+                                    <p class="date-time" th:utext="*{releaseDate}"></p>
+                                </div>
+                                <div class="below-header">
+                                    <p class="description" th:utext="*{shortDescription}"></p>
+                                </div>
+                            </div>
+                            <div class="lazyload-wrapper">
+                                <div class="content-right" transitionname="fade" transitionappeartimeout="1000"
+                                    th:style="'background-image: url('+*{smallImageURl}+');'">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="play-trailer"><i class="play-icon fa fa-play"></i></div>
+                </div>
+
+            </div>
+        </div>
+        <footer lang="vi" class="container" th:include="fragments/footer :: footer"/>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script>!function (e) { function r(r) { for (var n, a, p = r[0], i = r[1], l = r[2], c = 0, s = []; c < p.length; c++)a = p[c], Object.prototype.hasOwnProperty.call(o, a) && o[a] && s.push(o[a][0]), o[a] = 0; for (n in i) Object.prototype.hasOwnProperty.call(i, n) && (e[n] = i[n]); for (f && f(r); s.length;)s.shift()(); return u.push.apply(u, l || []), t() } function t() { for (var e, r = 0; r < u.length; r++) { for (var t = u[r], n = !0, p = 1; p < t.length; p++) { var i = t[p]; 0 !== o[i] && (n = !1) } n && (u.splice(r--, 1), e = a(a.s = t[0])) } return e } var n = {}, o = { 1: 0 }, u = []; function a(r) { if (n[r]) return n[r].exports; var t = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(t.exports, t, t.exports, a), t.l = !0, t.exports } a.m = e, a.c = n, a.d = function (e, r, t) { a.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, a.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, a.t = function (e, r) { if (1 & r && (e = a(e)), 8 & r) return e; if (4 & r && "object" == typeof e && e && e.__esModule) return e; var t = Object.create(null); if (a.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: e }), 2 & r && "string" != typeof e) for (var n in e) a.d(t, n, function (r) { return e[r] }.bind(null, n)); return t }, a.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return a.d(r, "a", r), r }, a.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, a.p = "/"; var p = this.webpackJsonpmoviereactapp = this.webpackJsonpmoviereactapp || [], i = p.push.bind(p); p.push = r, p = p.slice(); for (var l = 0; l < p.length; l++)r(p[l]); var f = i; t() }([])</script>
+</body>
+
+</html>

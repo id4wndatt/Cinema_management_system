@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link th:href="@{/css/main.css}" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <!-- Style -->
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+
+    <!-- Style -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+   	<link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	
+  <style>
+    .checkOut__left .bookSlot .bookSlot__content .chooseSlot .picking .slot__picking .slot__row .slot__item {
+      font-size: 31px !important;
+      font-weight: 600 !important;
+    }
+    .item--blocked{
+      color: #FFFF !important;
+    }
+  </style>
+  <title>Sidebar #1</title>
+</head>
+
+<body>
+
+  <th:block lang="vi" th:include="fragments/admin/navigation :: navigation"></th:block>
+  
+  <main>
+    <div class="container-fluid bg-light">
+      <div class="bookTicket__content row mt-5" style="margin-top: 0!important;">
+        <div class="checkOut__left col-md-9 col-sm-12 p-0">
+          <div class="bookSlot">
+            <div class="poster__film"
+              style="width: 0;
+                      background-image: url(&quot;http://movie0706.cybersoft.edu.vn/hinhanh/john-wick-iiisssssssssxxxssssssssssssssssssss_gp09.jpg&quot;);">
+
+            </div>
+            <div class="bookSlot__content" style="overflow-x: scroll;">
+
+              <div class="chooseSlot" style="width: 850px">
+                <div class="screen__img"><img src="https://i.ibb.co/zWgWjtg/screen.png" alt="screen">
+                </div>
+                <div class="picking row" style="padding: 0 50px;">
+                  <div class="slot__picking col-12">
+                    <div class="slot__row"></div>
+                  </div>
+                </div>
+                <div class="slot__detail row">
+                  <div class="col-md-3 col-sm-6 col-xs-6"><i class="fa fa-couch item--regular"></i><span
+                      class="slot__text">Ghế thường</span></div>
+                  <div class="col-md-3 col-sm-6 col-xs-6"><i class="fa fa-couch item--vip"></i><span
+                      class="slot__text">Ghế Vip</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="checkOut__right col-md-3 col-sm-12" style="min-height: 600px">
+          <div class="checkout__form">
+            <div class="film__info" style="margin:10px 20px 10px 0 ;">
+              <span class="film__age--C" style="font-size: large;">Select Branch</span>
+              <select name="" id="listBranch" class="form-control form-control-lg">
+              	<option value="" selected disabled hidden>Select Branch</option>
+                <option th:each="branch: ${branches}" th:value="${branch.id}" th:text="${branch.name}"></option>
+              </select>
+            </div>
+            <div id="info-room" class="film__info" style="margin:0px 20px 0 0 ;">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Phòng số</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Diện tích</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">URL image</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+            </div>
+            <div class="film__info" style="margin:10px 20px 10px 0 ;">
+              <span class="film__age--C" style="font-size: large;">Select Type Of Seat</span>
+              <span><i id="example-seat" class="fa fa-couch " style="color:#949494 ;"></i></span>
+              <select name="" id="listSeat" class="form-control form-control-lg">
+                <option value="0" data-class="fa fa-couch slot__item">Ghế Thường</option>
+                <option value="1" data-class="fa fa-couch slot__item item--vip">Ghế Vip</i></option>
+                <option value="2" data-class="fa fa-couch slot__item item--blocked">Ghế Bị Khóa</i></option>
+              </select>
+
+            </div>
+            
+            <div id="btnAddRoom" class="btnBook btn btn-primary" style="background-image: none;" data-toggle="modal"
+              data-target="#CreditModal">
+              UPDATE</div>
+          </div>
+          <a th:href="@{/admin/rooms}" id="btnBook" class="btn btn-primary"><i class="fa fa-plus"> MANAGE ROOM</i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="success" class="swal-overlay notify " tabindex="-1">
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--success">
+    <span class="swal-icon--success__line swal-icon--success__line--long"></span>
+    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
+
+    <div class="swal-icon--success__ring"></div>
+    <div class="swal-icon--success__hide-corners"></div>
+  </div><div class="swal-title" >Đã tạo phòng thành công!</div><div class="swal-text" style=""></div><div class="swal-footer"><div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+  <div id="error" class="swal-overlay notify" tabindex="-1" >
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--error">
+    <div class="swal-icon--error__x-mark">
+      <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+      <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+    </div>
+  </div>
+  	<div id="text-error" class="swal-title" ></div>
+  	<div class="swal-footer">
+  <div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+  <script th:src="@{/js/popper.min.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+  <script th:inline="javascript">
+
+  $(document).ready(function() {
+	    var slot=$(".slot__row")
+	    ABC=['A','B','C','D','E','F','G','H']
+	    for(var i=0;i<8;i++){
+	    	for(var j=1;j<=16;j++){
+	    		slot.append('<i class="fa fa-couch slot__item" data-name='+'"'+ABC[i]+j+'"'+'></i>')
+	    	}
+	    }
+    $(".slot__item").click(function(){
+      $(this).attr("class", $('#listSeat').find(':selected').data("class"))
+    })
+
+    $('#listSeat').on('change', function() {
+      if($(this).val()==0) $("#example-seat").attr("style","color:#949494")
+      if($(this).val()==1) $("#example-seat").attr("style","color:#fb4226")
+      if($(this).val()==2) $("#example-seat").attr("style","color:#FFFF")
+    });
+
+  //submit form add Room
+	$("#btnAddRoom").click(function(){
+		var seats=[]
+		var roomId=$('#listRoom').find(":selected").val()
+		var blockedSeat=0;
+		$(".slot__row i").each(function() {
+			vip=false
+			active=true
+			if($(this).hasClass("item--vip")) {
+				vip=true
+			}
+			else{
+				if($(this).hasClass("item--blocked")) {
+					active=false
+					blockedSeat++;
+				}
+			}
+			seats.push({
+				'name':$(this).data('name'),
+				'active':active,
+				'vip':vip,
+			})
+		})
+        var json = JSON.stringify(
+        			{
+						'id':$('#listRoom').find(":selected").val(),
+						'imgURL':$('#info-room input').eq(2).val(),
+						'name':$('#info-room input').eq(0).val(),
+						'totalArea':$('#info-room input').eq(1).val(),
+						'capacity':seats.length-blockedSeat,
+						'branch':{
+							'id':$('#listBranch').find(":selected").val()
+						},
+        				'seats':seats
+        			
+        			});
+        
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/admin/rooms/add",
+            headers: {"Authorization": "Bearer "+[[${session.jwtResponse.accessToken}]]},
+            data: json,
+            contentType: "application/json; charset=utf-8",
+            success:function(data){
+            	//show notify
+            	$("#success").addClass("swal-overlay--show-modal")
+
+				seats=[]
+      			
+            },
+            error: function (e) {
+            	$("#text-error").html(e.responseText)
+            	$("#error").addClass("swal-overlay--show-modal")
+            }
+        });
+		
+    });
+	//close notify
+    $(".notify").click(function(e){
+        $(this).removeClass("swal-overlay--show-modal");
+    });
+});
+  </script>
+</body>
+
+</html>

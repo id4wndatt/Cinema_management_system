@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="logo192.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <title>CDD Movie</title>
+    <link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+    <style type="text/css">
+    	.all-movie .search #wrap input[type=text] {
+		    width: max-content;
+		    z-index: 1;
+		    border-bottom: 1px solid #bbb;
+		    cursor: text;
+		}
+    </style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1073.0" data-gr-ext-installed="" style="">
+    <div id="root" th:object="${movie}">
+    	<header lang="vi" th:include="fragments/header :: header"/>
+        <section class="movieInfo">
+            <div class="full__background">
+            	<img th:src="*{smallImageURl}" th:alt="*{smallImageURl}" style="height: 450px;">
+                <div class="overlay__gradient"></div>
+                <div class="play__mobile"><i class="fa fa-play"></i></div>
+                <div class="rating__point">
+                    <p class="film__point">10</p>
+                    <div class="rating__stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                            class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                </div>
+            </div>
+            <div class="form__info container">
+                <div class="row">
+                    <div class="movie__poster text-left col-3">
+                        <div class="poster__img d-flex justify-content-center align-items-center"
+                            style="width: 220px; height: 300px;">
+                            <img class="w-100 h-100" th:src="*{smallImageURl}" th:alt="*{smallImageURl}">
+                            <div class="play__btn"><i class="fa fa-play"></i></div>
+                        </div>
+                    </div>
+                    <div class="movie__info col-6">
+                        <div>
+                            
+                            <div class="mb-3 d-flex justify-content-start align-items-center"><span
+                                    class="age--C">GP09</span><span class="name" th:text="*{name}"></span></div>
+                            <p class="during" th:text="*{duration}+' phút'"></p>
+                            <a href="#movieTheater" id="btn-buy-ticket">
+                            <button class="bookTicket-btn">Mua Vé</button></a>
+                        </div>
+                    </div>
+                    <div class="movie__rating d-flex justify-content-end col-3">
+                        <div>
+                            <div class="rating__point">10<div class="vongtronxanh"></div>
+                            </div>
+                            <div class="rating__stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                            <div class="rating__text">10 người đánh giá</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="film__infoMobile">
+                <div class="days" th:text="*{duration}"></div>
+                <div class="name" th:text="*{releaseDate}"></div>
+                <div class="during" th:text="*{duration}+' phút'"></div>
+            </div>
+        </section>
+        <section class="tabBookMovie">
+            <div class="container">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item"><a class="nav-link" id="pills-home-tab" data-toggle="pill"
+                            href="#pills-schedule" role="tab" aria-controls="pills-schedule" aria-selected="false">Lịch
+                            Chiếu</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="pills-profile-tab" data-toggle="pill"
+                            href="#pills-info" role="tab" aria-controls="pills-info" aria-selected="false">Thông Tin</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                            href="#pills-comment" role="tab" aria-controls="pills-comment" aria-selected="true">Đánh
+                            Giá</a></li>
+                    <li class="nav-item nav-video" th:data-src="*{trailerURL}">
+                    <a class="nav-link" id="pills-trailer-tab" data-toggle="pill" href="#pills-trailer" role="tab" aria-controls="pills-trailer" aria-selected="true">
+                    Trailer</a></li>
+                </ul>
+                <div id="movieTheater" class="tab-content">
+                    <div class="tab-pane fade" id="pills-schedule" role="tabpanel" aria-labelledby="pills-schedule-tab">
+                        <div class="movieTheater__row row bg-light">
+                            <div class="tab-content col-md-8 col-sm-12" id="v-pills-tabContent" style="max-width: 100%;flex: 0 0 100%;">
+                                <div class="tab-pane fade active show" id="BHDStar" role="tabpanel">
+                                    <div class="theater__content">
+                                        <ul class="list__theater">
+                                            <li class="list__item" th:each="branch: ${branches}" th:object="${branch}">
+                                            	<a class="theater__link collapsed"
+                                                    data-toggle="collapse" th:href="'#branch'+*{id}" role="button"
+                                                    aria-expanded="false">
+                                                    <div class="row">
+                                                        <div class="theater__img col-2"><img
+                                                                src="https://i.ibb.co/cvb2Rk6/theater.jpg"
+                                                                alt="hinhrap"></div>
+                                                        <div class="theater__title col-10">
+                                                        	<span class="theater__name cgv-color">
+                                                                <span class="theater__subname" th:text="*{name}"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="collapse" th:id="'branch'+*{id}" style="">
+                                                    <div class="collapse__content">
+                                                        <div class="film__timeshow">
+                                                            <div>
+                                                                <div class="film__version my-4" >2D Digital</div>
+                                                                <ul class="d-flex flex-wrap">
+                                                                	<th:block th:each="schedule: *{schedules}"> 
+                                                                    <div class="timeshow__item"  th:if="${schedule.movie.id==movie.id}"><a
+                                                                            class="timeshow__link"
+                                                                            th:href="@{'/booking/' + ${schedule.id}}">
+                                                                            <div class="time__begin mb-2" th:inline="text">
+                                                                            	[[${schedule.startDate}]]
+																				<p th:text="${schedule.startTime}"></p>
+                                                                            </div>
+                                                                        </a></div>
+                                                                     </th:block>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active show" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+                        <div class="row__above row">
+                            <div class="info__category col-md-6 col-sm-12">
+                                <div class="category__item">
+                                    <p class="category__name">Ngày phát hành</p>
+                                    <p class="category__content" th:text="*{releaseDate}"></p>
+                                </div>
+                                <div class="category__item">
+                                    <p class="category__name">Đạo diễn </p>
+                                    <p class="category__content" th:text="*{director}"></p>
+                                </div>
+                                <div class="category__item">
+                                    <p class="category__name">Diễn viên</p>
+                                    <p class="category__content" th:text="*{actors}"></p>
+                                </div>
+                                <div class="category__item">
+                                    <p class="category__name">Thể Loại</p>
+                                    <p class="category__content" th:text="*{categories}"></p>
+                                </div>
+                                <div class="category__item">
+                                    <p class="category__name">Ngôn ngữ</p>
+                                    <p class="category__content" th:text="*{language}"></p>
+                                </div>
+                                <div class="category__item">
+                                    <p class="category__name">Độ tuổi</p>
+                                    <p class="category__content" th:text="*{rated}"></p>
+                                </div>
+                            </div>
+                            <div class="info__content col-md-6 col-sm-12">
+                                <div class="info__title">Nội dung</div>
+                                <p class="info__text" th:text="*{longDescription}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-comment" role="tabpanel"
+                        aria-labelledby="pills-comment-tab">
+                        <div class="youthink" data-toggle="modal" data-target="#CommentModal">
+                            <div class="youthink__items">
+                                <div class="items__img"><img src="https://i.ibb.co/PCjW83Y/avt.png" alt="avt"><span
+                                        class="items__text">Bình luận nào...</span></div>
+                                <div class="items__stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="CommentModal" tabindex="-1" role="dialog"
+                            aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form class="comment-form">
+                                            <div class="rating"><input type="radio" name="rating" id="r1"
+                                                    value="10"><label for="r1"></label><input type="radio" name="rating"
+                                                    id="r2" value="8"><label for="r2"></label><input type="radio"
+                                                    name="rating" id="r3" value="6"><label for="r3"></label><input
+                                                    type="radio" name="rating" id="r4" value="4"><label
+                                                    for="r4"></label><input type="radio" name="rating" id="r5"
+                                                    value="2"><label for="r5"></label></div>
+                                            <div class="textb"><textarea type="text" name="binhLuan"
+                                                    required=""></textarea>
+                                                <div class="placeholder" value="">Bình luận</div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer"><button class="btn btn-block button-post">Đăng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list__comment"></div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-trailer" role="tabpanel"
+                        aria-labelledby="pills-trailer-tab">
+								<iframe id="video" 
+								style=
+								"min-height: 500px;
+					    		width: 100%;" 
+					    		th:src="*{trailerURL}">
+									</iframe>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    	<footer lang="vi" class="container" th:include="fragments/footer :: footer"/>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script>!function (e) { function r(r) { for (var n, a, p = r[0], i = r[1], l = r[2], c = 0, s = []; c < p.length; c++)a = p[c], Object.prototype.hasOwnProperty.call(o, a) && o[a] && s.push(o[a][0]), o[a] = 0; for (n in i) Object.prototype.hasOwnProperty.call(i, n) && (e[n] = i[n]); for (f && f(r); s.length;)s.shift()(); return u.push.apply(u, l || []), t() } function t() { for (var e, r = 0; r < u.length; r++) { for (var t = u[r], n = !0, p = 1; p < t.length; p++) { var i = t[p]; 0 !== o[i] && (n = !1) } n && (u.splice(r--, 1), e = a(a.s = t[0])) } return e } var n = {}, o = { 1: 0 }, u = []; function a(r) { if (n[r]) return n[r].exports; var t = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(t.exports, t, t.exports, a), t.l = !0, t.exports } a.m = e, a.c = n, a.d = function (e, r, t) { a.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, a.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, a.t = function (e, r) { if (1 & r && (e = a(e)), 8 & r) return e; if (4 & r && "object" == typeof e && e && e.__esModule) return e; var t = Object.create(null); if (a.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: e }), 2 & r && "string" != typeof e) for (var n in e) a.d(t, n, function (r) { return e[r] }.bind(null, n)); return t }, a.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return a.d(r, "a", r), r }, a.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, a.p = "/"; var p = this.webpackJsonpmoviereactapp = this.webpackJsonpmoviereactapp || [], i = p.push.bind(p); p.push = r, p = p.slice(); for (var l = 0; l < p.length; l++)r(p[l]); var f = i; t() }([])</script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+              $(".nav-item").click(function(){
+                  $("#video").attr('src',"");
+              });
+                $('.nav-video').click(function() {
+                    var videoSrc = $(this).data( "src" );
+                    $("#video").attr('src',videoSrc); 
+                });
+                $("#btn-buy-ticket").click(function(){
+                	$("#pills-home-tab").trigger('click');
+                })
+            });
+    
+        
+     </script>
+</body>
+</html>

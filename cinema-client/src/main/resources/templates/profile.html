@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="favicon.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app"/>
+    <link rel="apple-touch-icon" href="logo192.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <title>CDD Movie</title>
+    <link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1073.0" data-gr-ext-installed="">
+    <div id="root">
+    	<header lang="vi" th:include="fragments/header :: header"/>
+        <div class="profile container-fluid text-light">
+            <div class="row">
+                <div class="col-12 col-avt">
+                    <div class="img-avt p-5 text-center"><img src="https://i.ibb.co/PCjW83Y/avt.png" alt="hinhanh">
+                    </div>
+                    <div class="tableInfo">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-left bg-dark">
+                                <h2 class="info-title">Thông tin cá nhân</h2>
+                                <div class="MuiPaper-root MuiTableContainer-root MuiPaper-elevation1 MuiPaper-rounded" th:object="${user}">
+                                    <table class="MuiTable-root" aria-label="simple table" >
+                                        <tbody class="MuiTableBody-root">
+                                            <th class="MuiTableRow-root" role="row" scope="row">
+                                            </th>
+                                            <tr class="MuiTableRow-root">
+                                                <th class="MuiTableCell-root MuiTableCell-body" 
+                                                 role="cell" scope="row">Họ tên:</th>
+                                                <th class="MuiTableCell-root MuiTableCell-body"
+                                                th:text="*{fullName}" role="cell" scope="row"></th>
+                                            </tr>
+                                            <tr class="MuiTableRow-root">
+                                                <th class="MuiTableCell-root MuiTableCell-body" role="cell" scope="row">
+                                                    Nhóm:</th>
+                                                <th class="MuiTableCell-root MuiTableCell-body" role="cell" scope="row">
+                                                    GP09</th>
+                                            </tr>
+                                            <tr class="MuiTableRow-root">
+                                                <th class="MuiTableCell-root MuiTableCell-body" role="cell" scope="row" >
+                                                    Email:</th>
+                                                <th class="MuiTableCell-root MuiTableCell-body" 
+                                                th:text="*{username}" role="cell" scope="row"></th>
+                                            </tr>
+                                            <tr class="MuiTableRow-root">
+                                                <th class="MuiTableCell-root MuiTableCell-body"
+                                                 role="cell" scope="row">Số điện thoại:</th>
+                                                <th class="MuiTableCell-root MuiTableCell-body"
+                                                th:text="*{phone}" role="cell" scope="row"></th>
+                                            </tr>
+                                            <tr class="MuiTableRow-root">
+                                                <th class="MuiTableCell-root MuiTableCell-body" role="cell" scope="row">
+                                                    <i class="fa fa-user"></i></th>
+                                                <th class="MuiTableCell-root MuiTableCell-body" role="cell" scope="row">
+                                                    KhachHang</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-12 col-right bg-dark">
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h2 class="mb-0"><button class="btn btn-link collapsed" type="button"
+                                                    data-toggle="collapse" data-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                    <h4 class="text-dark" style="text-decoration: none;">Chỉnh sửa thông
+                                                        tin cá nhân</h4>
+                                                </button></h2>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                            data-parent="#accordion" style="" >
+                                            <div class="card-body">
+                                                <form class="formRegister" th:object="${user}" th:action="@{/account/update-infor}" method="post">
+                                                    <div class="form-group"><input class="input" 
+                                                            type="text" placeholder="Họ tên"  th:field="*{fullName}" th:value="*{fullName}"><span
+                                                            class="text-danger"></span></div>
+                                                    
+                                                    <div class="form-group"><input class="input" type="hidden"
+                                                            placeholder="Email" th:field="*{username}" th:value="*{username}"><span
+                                                            class="text-danger"></span></div>
+                                                    <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                                                    <div class="form-group"><input class="input" type="hidden"
+                                                            placeholder="Mật khẩu" th:field="*{password}" th:value="'******'" readonly><span
+                                                            class="text-danger"></span></div>
+													<div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                                                    <div class="form-group"><input class="input" type="text"
+                                                            placeholder="Số điện thoại" th:field="*{phone}" th:value="*{phone}" ><span
+                                                            class="text-danger"></span></div>
+                                                    <div class="alert alert-warning" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+                                                    <div class="form-group"><button class="btnChange btn-block"
+                                                            type="submit"
+                                                            style="color: white; background-color: rgb(96, 197, 239); border-radius: 5px; padding: 15px;">Thay
+                                                            đổi thông tin</button></div>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree">
+                                            <h2 class="mb-0"><button class="btn btn-link collapsed" type="button"
+                                                    data-toggle="collapse" data-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                    <h4 class="text-dark" style="text-decoration: none;">Đổi mật khấu</h4>
+                                                </button></h2>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                            data-parent="#accordion" style="" >
+                                            <div class="card-body">
+                                                <form class="formRegister" th:action="@{/account/change-password}" method="post">
+                                                    <div class="form-group"><input class="input" name="newPassword" 
+                                                            type="password" placeholder="Mật khẩu mới" ><span
+                                                            class="text-danger"></span></div>
+                                                    <div class="form-group"><input class="input" name="validNewPassword" 
+                                                            type="password" placeholder="Nhập lại mật khẩu" ><span
+                                                            class="text-danger"></span></div>
+                                                    <div class="form-group"><button class="btnChange btn-block"
+                                                            type="submit"
+                                                            style="color: white; background-color: rgb(96, 197, 239); border-radius: 5px; padding: 15px;">
+                                                            Save</button></div>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h2 class="mb-0"><button class="btn btn-link collapsed" type="button"
+                                                    data-toggle="collapse" data-target="#collapseOne"
+                                                    aria-expanded="false" aria-controls="collapseOne">
+                                                    <h4 class="text-dark" style="text-decoration: none;">Lịch sử đặt vé
+                                                    </h4>
+                                                </button></h2>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                           data-parent="#accordion" style="">
+                                            <div class="card-body">
+                                                <table class="table table-hover">
+                                                    <thead class="bg-dark text-light">
+                                                        <tr>
+                                                            <th scope="col">Tên phim</th>
+                                                            <th scope="col">Tên Chi Nhánh</th>
+                                                            <th scope="col">Thời gian chiếu</th>
+                                                            <th scope="col">Số phòng</th>
+                                                            <th scope="col">Số ghế</th>
+                                                            <th scope="col">Thời gian mua</th>
+                                                            <th scope="col">Mã Qr</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="ticket: ${listTickets}" th:object="${ticket}">
+                                                            <th scope="row" th:text="*{schedule.movie.name}"></th>
+                                                            <td th:text="*{schedule.branch.name}"></td>
+                                                            <td th:text="*{schedule.startDate} +' '+ *{schedule.startTime}+'PM' ">
+                                                            </td>
+                                                            <td th:text="*{schedule.room.name}"></td>
+                                                            <td th:text="*{seat.name}"></td>
+                                                            <td th:text="*{bill.createdTime}"></td>
+                                                            <td><img alt="" th:src="*{qrImageURL}"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer lang="vi" class="container" th:include="fragments/footer :: footer"/>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script>!function (e) { function r(r) { for (var n, a, p = r[0], i = r[1], l = r[2], c = 0, s = []; c < p.length; c++)a = p[c], Object.prototype.hasOwnProperty.call(o, a) && o[a] && s.push(o[a][0]), o[a] = 0; for (n in i) Object.prototype.hasOwnProperty.call(i, n) && (e[n] = i[n]); for (f && f(r); s.length;)s.shift()(); return u.push.apply(u, l || []), t() } function t() { for (var e, r = 0; r < u.length; r++) { for (var t = u[r], n = !0, p = 1; p < t.length; p++) { var i = t[p]; 0 !== o[i] && (n = !1) } n && (u.splice(r--, 1), e = a(a.s = t[0])) } return e } var n = {}, o = { 1: 0 }, u = []; function a(r) { if (n[r]) return n[r].exports; var t = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(t.exports, t, t.exports, a), t.l = !0, t.exports } a.m = e, a.c = n, a.d = function (e, r, t) { a.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, a.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, a.t = function (e, r) { if (1 & r && (e = a(e)), 8 & r) return e; if (4 & r && "object" == typeof e && e && e.__esModule) return e; var t = Object.create(null); if (a.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: e }), 2 & r && "string" != typeof e) for (var n in e) a.d(t, n, function (r) { return e[r] }.bind(null, n)); return t }, a.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return a.d(r, "a", r), r }, a.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, a.p = "/"; var p = this.webpackJsonpmoviereactapp = this.webpackJsonpmoviereactapp || [], i = p.push.bind(p); p.push = r, p = p.slice(); for (var l = 0; l < p.length; l++)r(p[l]); var f = i; t() }([])</script>
+
+<div th:if="${statusChangedPassword}==false"  class="swal-overlay swal-overlay--show-modal notify" tabindex="-1" >
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--error">
+    <div class="swal-icon--error__x-mark">
+      <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+      <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+    </div>
+  </div>
+  	<div class="swal-title" th:text="${messageStatus}"></div>
+  	<div class="swal-footer">
+  <div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+  <div th:if="${statusChangedPassword}==true" class="swal-overlay swal-overlay--show-modal notify" tabindex="-1">
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--success">
+    <span class="swal-icon--success__line swal-icon--success__line--long"></span>
+    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
+
+    <div class="swal-icon--success__ring"></div>
+    <div class="swal-icon--success__hide-corners"></div>
+  </div><div class="swal-title" th:text="${messageStatus}"></div><div class="swal-text" style=""></div><div class="swal-footer"><div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+</body>
+
+<script>
+$(document).ready(function(){
+    $(".notify").click(function(e){
+        $(this).removeClass("swal-overlay--show-modal");
+    });
+
+  });
+</script>
+</html>

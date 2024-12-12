@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/form-style.css}">
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <title>AP Movie</title>
+  </head>
+  <body>
+  <th:block lang="vi" th:include="fragments/admin/navigation :: navigation"></th:block>
+    <main>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center" style="margin: 40px;">
+          <div class="col-md-6 text-center mb-5" >
+            <h2 class="heading-section">Update Branch</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="wrapper img">
+              <div class="row">
+                <div class="col-md-9 col-lg-7">
+                  <div class="contact-wrap w-100 p-md-5 p-4">
+                    <form method="POST" id="contactForm" name="contactForm" class="contactForm" 
+                    th:action="@{/admin/branches/update}" th:object="${branch}">
+                      	<input th:field="*{id}" type="hidden"/>
+                      <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default">Vị trí</span>
+                            </div>
+                            <input type="url" th:field="*{imgURL}" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default">Tên chi nhánh</span>
+                            </div>
+                            <input type="text" th:field="*{name}" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ</span>
+                            </div>
+                            <input type="text" th:field="*{diaChi}" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default">Số điện thoại</span>
+                            </div>
+                            <input type="number" th:field="*{phoneNo}" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                          </div>
+                          <div class="form-group">
+                            <input id="btn-post" type="submit" value="Save" class="btn btn-primary">
+                            <div class="submitting"></div>
+                          </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-9 col-lg-2"    >
+                  <img id="img-movie" style="height: 100%;"  th:src="${branch.imgURL}" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="error--login" class="swal-overlay" tabindex="-1"  >
+  <div class="swal-modal" role="dialog" aria-modal="true">
+	  <div class="swal-icon swal-icon--error">
+	    <div class="swal-icon--error__x-mark">
+	      <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+	      <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+	    </div>
+	  </div>
+	  <div class="swal-title" >Không được để trống dữ liệu</div>
+	  <div class="swal-footer">
+	  	<div class="swal-button-container">
+	    	<button class="swal-button swal-button--confirm">OK</button>
+	    	<div class="swal-button__loader"></div>
+	  	</div>
+	  </div>
+  </div>
+  </div>
+    </main>
+  <script th:inline="javascript">
+    $(document).ready(function() {
+			$("#btn-post").click(function(event){
+				event.preventDefault();
+				var emty=false
+				$(".form-control").each(function() {
+					if($(this).val()=='0' || $(this).val()=='' || $(this).val()==null){
+						emty=true
+					}
+					console.log($(this).val())
+				})
+				if(emty){
+					$("#error--login").addClass("swal-overlay--show-modal")
+				}else{
+					$("#contactForm").submit(); 
+				}
+    		})
+    		$(document).ready(function(){
+    		    $("#error--login").click(function(e){
+    		        $(this).removeClass("swal-overlay--show-modal");
+    		    });
+
+    		  });
+    });
+    
+	</script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+  </body>
+</html>

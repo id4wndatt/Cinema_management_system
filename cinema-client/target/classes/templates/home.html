@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="logo192.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <title>CDD Movie</title>
+    <link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" 
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.2/swiper-bundle.css" 
+    integrity="sha512-ipO1yoQyZS3BeIuv2A8C5AwQChWt2Pi4KU3nUvXxc4TKr8QgG8dPexPAj2JGsJD6yelwKa4c7Y2he9TTkPM4Dg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1073.0" data-gr-ext-installed=""><noscript>You need to enable JavaScript to run
+        this app.</noscript>
+    <div id="root">
+    	<header lang="vi" th:include="fragments/header :: header"/>
+        <div class="hotMovie">
+            <div class="hotMovie__content">
+                <div class="owl-carousel myHotMovieCarousel owl-carousel owl-theme owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage"
+                            style="transform: translate3d(-5076px, 0px, 0px); transition: all 0.25s ease 0s; width: 11844px;">
+
+ 
+                            <div class="owl-item" style="width: 1692px;">
+                                <div class="item">
+                                    <div class="item__img"><img class="img-fluid"
+                                            src="https://s3img.vcdn.vn/123phim/2020/07/yeu-nhau-mua-e-15949150603140.png"
+                                            alt="phim soi">
+                                        <div class="background__overlay"><i class="fa fa-play carousel__button"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item active" style="width: 1692px;">
+                                <div class="item">
+                                    <div class="item__img"><img class="img-fluid"
+                                            src="https://s3img.vcdn.vn/123phim/2020/05/vi-anh-deo-tin-15906776637571.png"
+                                            alt="hinh anh phim">
+                                        <div class="background__overlay"><i class="fa fa-play carousel__button"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 1692px;">
+                                <div class="item">
+                                    <div class="item__img"><img class="img-fluid"
+                                            src="https://s3img.vcdn.vn/123phim/2020/07/ban-dao-15954792351353.jpg"
+                                            alt="va phim cua hinh anh">
+                                        <div class="background__overlay"><i class="fa fa-play carousel__button"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="listMovie" class="listMovie">
+            <div class="container">
+                <div id="listMovieTab">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                href="#pills-dangchieu" role="tab" aria-controls="pills-home" aria-selected="true">Đang
+                                Chiếu</a></li>
+                        <li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill"
+                                href="#pills-sapchieu" role="tab" aria-controls="pills-profile"
+                                aria-selected="false">Sắp Chiếu</a></li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-dangchieu" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                        <div class="swiper">
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                               	<div class="swiper-wrapper">
+	                                <div class="swiper-slide" th:each="movie: ${showingMovies}" th:object="${movie}"
+									    style="width: 240px; z-index: -4;">
+									    <div class="item__movie">
+									        <div class="item__link">
+									            <div class="item__img" >
+									            	<img th:src="*{smallImageURl}" th:alt="*{smallImageURl}"/>
+									                <div class="overlay">
+									                    <div class="play__button" style="cursor: pointer;"><i
+									                            class="fa fa-play play__icon"></i></div>
+									                </div><span class="film__age age--C">GP09</span><span
+									                    class="film__audit">
+									                    <p class="film__point">8</p><i
+									                        class="fa fa-star film__star"></i><i
+									                        class="fa fa-star film__star"></i><i
+									                        class="fa fa-star film__star"></i><i
+									                        class="fa fa-star film__star"></i>
+									                </span>
+									            </div>
+									            <div class="item__info">
+									                <p class="film__name" th:text="*{name}"></p>
+									                <span class="film__during" >2022</span>
+									                <div class="item__button"><a class="btn buyTicket__button"
+									                        th:href="@{/movies/detail(movieId=*{id})}">ĐẶT VÉ</a></div>
+									            </div>
+									        </div>
+									    </div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-sapchieu" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <div
+                                class="swiper">
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                               	<div class="swiper-wrapper">
+	                                <div class="swiper-slide" th:each="movie: ${comingMovies}" th:object="${movie}"
+									    style="width: 240px; z-index: -4;">
+									    <div class="item__movie">
+									        <div class="item__link">
+									            <div class="item__img" >
+									            	<img th:src="*{smallImageURl}" th:alt="*{smallImageURl}"/>
+									                <div class="overlay">
+									                    <div class="play__button" style="cursor: pointer;"><i
+									                            class="fa fa-play play__icon"></i></div>
+									                </div><span class="film__age age--C">GP09</span><span
+									                    class="film__audit">
+									                    <p class="film__point">8</p><i
+									                        class="fa fa-star film__star"></i><i
+									                        class="fa fa-star film__star"></i><i
+									                        class="fa fa-star film__star"></i><i
+									                        class="fa fa-star film__star"></i>
+									                </span>
+									            </div>
+									            <div class="item__info">
+									                <p class="film__name" th:text="*{name}"></p>
+									                <span class="film__during" >2022</span>
+									                <div class="item__button"><a class="btn buyTicket__button"
+									                        th:href="@{/movies/detail(movieId=*{id})}">ĐẶT VÉ</a></div>
+									            </div>
+									        </div>
+									    </div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="animated fadeIn" style="animation-duration: 1s; opacity: 1;">
+            <section id="schedule" class="schedule container mx-auto">
+                <div class="schedule__content">
+                    <div class="container">
+                        <h1 class="schedule__title text-center mb-4">Lịch Chiếu                         
+                        <span class="schedule__title text-center mb-4">
+	                        	<select name="select-date" id="select-date">
+	                                <option th:each="startDate: ${allStartDate}" th:value="${startDate}" th:text="${startDate}"></option>
+	                            </select>
+                        </span></h1>
+
+                        <div class="schedule__row row bg-light">
+                            <div class="main__tabContent col-md-10 col-sm-12" style="max-width: 100%">
+								<div class="tab-content" id="v-pills-tabContent">
+								    <div class="tab-pane fade show active" id="BHDStar" role="tabpanel" aria-labelledby="v-pills-home-tab">
+								        <div class="secondary__row row">
+								            <div class="secondary__tab col-md-5 col-sm-12">
+								                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+								                	<a th:each="branch : ${branches}" class="nav-link" data-toggle="pill" th:href="'#branch'+${branch.id}" role="tab" aria-controls="v-pills-home" aria-selected="true">
+								                        <div class="img__theater">
+								                        	<img th:src="${branch.imgURL}" alt="sdsd">
+								                        </div>
+								                        <div class="text__theater">
+								                        	<span class="name__theater">
+								                        		<span class="name__aftertheater" th:text="${branch.name}"></span>
+								                        	</span>
+								                            <p class="address__theater" th:text="${branch.diaChi}"></p>
+								                            <span class="detail__theater">[chi tiết]</span>
+								                        </div>
+								                    </a>
+								                  </div>
+								            </div>
+								            <div class="secondary__tabContent col-md-7 col-sm-12">
+								                <div class="tab-content" id="v-pills-tabContent">
+								                    <div th:each="branch : ${branches}" class="tab-pane fade"  
+								                    th:id="'branch'+${branch.id}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+								                        <div class="tab__list" >
+								                            <ul>
+								                                <li class="film__item" th:each="movie: ${branch.movies}" data-length="0">
+								                                	<a class="film__link" data-toggle="collapse" th:href="'#brand'+${branch.id}+'-movie'+${movie.id}" role="button" aria-expanded="false" aria-controls="1322">
+								                                        <div class="row">
+								                                            <div class="film__img col-2"><img th:src="${movie.smallImageURl}" th:alt="${movie.smallImageURl}">
+								                                            </div>
+								                                            <div class="film__title col-10">
+								                                            	<span class="age--C">2D</span>
+								                                            	<span class="film__name" th:text="${movie.name}"></span>
+								                                                <p class="film__timming" th:text="${movie.duration}+'phút - ' +${movie.categories} "></p>
+								                                            </div>
+								                                        </div>
+								                                    </a>
+								                                    <div class="collapse" th:id="'brand'+${branch.id}+'-movie'+${movie.id}">
+								                                        <div class="collapse__content">
+								                                            <ul class="d-flex flex-wrap">
+								                                                <li  class="timeshow__item" th:each="schedule: ${movie.schedules}">
+								                                                	<a class="timeshow__link" th:href="@{'/booking/' + ${schedule.id}}">
+								                                                		<span class="time__begin" th:data-date="${#temporals.format(schedule.startDate, 'dd/MM/yyyy')}"
+								                                                		 th:text="${#temporals.format(schedule.startTime, 'HH:mm')}"></span>
+								                                                	</a>
+								                                                </li>
+								                                            </ul>
+								                                        </div>
+								                                    </div>
+								                                </li>
+								                                
+								                            </ul>
+								                        </div>
+								                    </div>
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="animated zoomIn" style="animation-duration: 1s; opacity: 1;">
+            <section id="news" class="news">
+                <div class="container">
+                    <div id="newsTab">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" id="pills-24h-tab" data-toggle="pill"
+                                    href="#pills-24h" role="tab" aria-controls="pills-24h" aria-selected="true">Điện Ảnh
+                                    24h</a></li>
+                            <li class="nav-item"><a class="nav-link" id="pills-review-tab" data-toggle="pill"
+                                    href="#pills-review" role="tab" aria-controls="pills-review"
+                                    aria-selected="false">Review</a></li>
+                            <li class="nav-item"><a class="nav-link" id="pills-promotion-tab" data-toggle="pill"
+                                    href="#pills-promotion" role="tab" aria-controls="pills-promotion"
+                                    aria-selected="false">Khuyến Mãi</a></li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-24h" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                <div class="tab__content">
+                                    <div class="card-content row">
+                                        <div class="example-1 card">
+                                            <div class="wrapper">
+                                                <div class="datepost"><span class="daypost">01</span><span
+                                                        class="monthpost">Tháng 7</span><span
+                                                        class="yearpost">2020</span></div>
+                                                <div class="datanews">
+                                                    <div class="contentnews"><span class="authornews">Anh Phong</span>
+                                                        <h1 class="titlenews"><a class="title__link" href="/#">Một thành
+                                                                viên của Avengers sẽ "biến chất"?</a></h1>
+                                                        <p class="text-description">Marvel Studios đang ủ ý tưởng cho
+                                                            quân mình đánh quân ta, khi dự định biến một thành viên cao
+                                                            cấp của nhóm Avengers trở thành phản diện...</p><label
+                                                            for="show-menu" class="menu-button"><span></span></label>
+                                                    </div><input type="checkbox" id="show-menu">
+                                                    <ul class="menu-content">
+                                                        <li class="menu-content-item"><a class="item__link" href="/#"><i
+                                                                    class="fa fa-tag"></i></a></li>
+                                                        <li class="menu-content-item"><a href="/#"
+                                                                class="item__link fa fa-heart"><span
+                                                                    class="item-data">47</span></a></li>
+                                                        <li class="menu-content-item"><a href="/#"
+                                                                class="item__link fa fa-comment"><span
+                                                                    class="item-data">8</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="example-2 card">
+                                            <div class="wrapper">
+                                                <div class="header-post">
+                                                    <div class="datepost"><span class="daypost">26 </span><span
+                                                            class="monthpost">Tháng 6 </span><span
+                                                            class="yearpost">2020</span></div>
+                                                    <ul class="menu-content">
+                                                        <li class="menu-content-item"><a href="/#" class="item__link"><i
+                                                                    class="fa fa-bookmark"></i></a></li>
+                                                        <li class="menu-content-item"><a href="/#"
+                                                                class="item__link fa fa-heart"><span
+                                                                    class="item-data">18</span></a></li>
+                                                        <li class="menu-content-item"><a href="/#"
+                                                                class="item__link fa fa-comment"><span
+                                                                    class="item-data">3</span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="datanews">
+                                                    <div class="contentnews"><span class="authornews">Paul Pogba</span>
+                                                        <h1 class="titlenews"><a class="title__link" href="/#">Stranger
+                                                                Things: The sound of the Upside Down</a></h1>
+                                                        <p class="text-description">The antsy bingers of Netflix will
+                                                            eagerly anticipate the digital release of the Survive
+                                                            soundtrack, out today.</p><a href="/#"
+                                                            class="button-watch">Xem thêm</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="readMore"><button class="btn btn__readmore">XEM THÊM</button></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-review" role="tabpanel"
+                                aria-labelledby="pills-review-tab">
+                                <div class="tab__content">
+                                    <div class="row__above row">
+                                        <div class="row__item col-md-6 col-sm-12">
+                                            <div class="item__img"><a href="/#"><img class="img-fluid"
+                                                        src="https://s3img.vcdn.vn/123phim/2020/04/stormbreaker-va-mjolnir-loai-vu-khi-nao-cua-thor-manh-hon-15876330404511.png"
+                                                        alt="hinhanhstorm"></a></div>
+                                            <div class="item__text"><a class="item__title" href="/#">[Review]
+                                                    Stormbreaker và Mjolnir: Loại vũ khí nào của Thor mạnh hơn?</a>
+                                                <p class="item__description">Tác phẩm mới nhất của Marvel tiếp tục là
+                                                    câu chuyện hài hước và cảm xúc về tình cảm gia đình.</p>
+                                            </div>
+                                            <div class="item__icon">
+                                                <div class="icon__social d-inline"><i class="fa fa-thumbs-up"></i><span
+                                                        class="count__number">2</span></div>
+                                                <div class="icon__social d-inline"><i
+                                                        class="fa fa-comment-alt"></i><span
+                                                        class="count__number">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="row__item col-md-6 col-sm-12">
+                                            <div class="item__img"><a href="/#"><img class="img-fluid"
+                                                        src="https://s3img.vcdn.vn/123phim/2020/03/review-sieu-ve-si-so-vo-giai-cuu-tong-thong-chua-bao-gio-lay-loi-va-hai-huoc-den-the-15840925415754.jpg"
+                                                        alt="hinhansds"></a></div>
+                                            <div class="item__text"><a class="item__title" href="/#">[Review] Kẻ Vô Hình
+                                                    - Còn gì đáng sợ hơn kẻ giết người bệnh hoạn vô hình?</a>
+                                                <p class="item__description">Phiên bản hiện đại của The Invisible Man là
+                                                    một trong những phim kinh dị xuất sắc nhất năm nay.</p>
+                                            </div>
+                                            <div class="item__icon">
+                                                <div class="icon__social d-inline"><i class="fa fa-thumbs-up"></i><span
+                                                        class="count__number">0</span></div>
+                                                <div class="icon__social d-inline"><i
+                                                        class="fa fa-comment-alt"></i><span
+                                                        class="count__number">1</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row__below row">
+                                        <div class="row__left col-md-8">
+                                            <div class="left__below row">
+                                                <div class="left__item col-6">
+                                                    <div class="item__img"><img class="img-fluid"
+                                                            src="https://s3img.vcdn.vn/123phim/2020/03/covid-19-la-ban-chinh-thuc-cua-mev-1-phim-contagion-2011-15843500427339.jpg"
+                                                            alt="hinhansdsddh"></div>
+                                                    <div class="item__text"><a class="item__title" href="/#">[Review]
+                                                            Cậu Bé Ma 2 - Bạn trai của 'bé Beo' là đây chứ đâu xa</a>
+                                                        <p class="item__description">Brahms: The Boy II có những màn hù
+                                                            dọa ấn tượng nhưng cái kết lại không tương xứng với phần mở
+                                                            đầu hứa hẹn.</p>
+                                                    </div>
+                                                    <div class="item__icon">
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-thumbs-up"></i><span
+                                                                class="count__number">5</span></div>
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-comment-alt"></i><span
+                                                                class="count__number">1</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="left__item col-6">
+                                                    <div class="item__img"><img class="img-fluid"
+                                                            src="https://s3img.vcdn.vn/123phim/2020/02/review-nhim-sonic-cuoi-tha-ga-cung-chang-nhim-sieu-thanh-lay-loi-15821907845631.jpg"
+                                                            alt="hinhaa212anh"></div>
+                                                    <div class="item__text"><a class="item__title" href="/#">[Review]
+                                                            Nhím Sonic - Cười thả ga cùng chàng nhím siêu thanh lầy
+                                                            lội</a>
+                                                        <p class="item__description">Nhờ tiếp thu ý kiến của fan mà Nhím
+                                                            Sonic đã trở thành một trong những bộ phim chuyển thể từ trò
+                                                            chơi điện tử xuất sắc nhất.</p>
+                                                    </div>
+                                                    <div class="item__icon">
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-thumbs-up"></i><span
+                                                                class="count__number">1</span></div>
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-comment-alt"></i><span
+                                                                class="count__number">1</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row__right col-md-4 col-sm-12">
+                                            <ul>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="https://s3img.vcdn.vn/123phim/2020/02/review-birds-of-prey-15809871977193.jpg"
+                                                                alt="ad223"></div>
+                                                        <div class="item__title">[Review] Tháng Năm Hạnh Phúc Ta Từng Có
+                                                            - Buông bỏ chưa bao giờ là việc dễ dàng</div>
+                                                    </a></li>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="https://s3img.vcdn.vn/123phim/2020/02/review-bi-mat-cua-gio-cau-chuyen-tinh-nguoi-duyen-ma-day-nuoc-mat-15806427358700.jpg"
+                                                                alt="hinhanh"></div>
+                                                        <div class="item__title">[Review] Sắc Đẹp Dối Trá - Hương Giang
+                                                            kể chuyện đời mình qua phim ảnh</div>
+                                                    </a></li>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="https://s3img.vcdn.vn/123phim/2020/01/gai-gia-lam-chieu-3-cuoc-chien-me-chong-nang-dau-cua-gioi-sieu-giau-xu-hue-15798623446424.jpg"
+                                                                alt="gai-gia-lam-chieu"></div>
+                                                        <div class="item__title">[Review] Birds of Prey - Màn lột xác
+                                                            hoành tráng của Harley Quinn và DC</div>
+                                                    </a></li>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="https://s3img.vcdn.vn/123phim/2020/01/30-chua-phai-tet-phim-vong-lap-thoi-gian-thuong-hieu-viet-15797534706701.jpg"
+                                                                alt="30chualatet"></div>
+                                                        <div class="item__title">[Review] Bí Mật Của Gió - Câu chuyện
+                                                            “tình người duyên ma” đầy nước mắt</div>
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="readMore"><button class="btn btn__readmore">XEM THÊM</button></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-promotion" role="tabpanel"
+                                aria-labelledby="pills-promotion-tab">
+                                <div class="tab__content">
+                                    <div class="row__above row">
+                                        <div class="row__item col-md-6 col-sm-12">
+                                            <div class="item__img"><a href="/#"><img class="img-fluid"
+                                                        src="http://s3img.vcdn.vn/123phim/2017/06/bhd-star-gia-ve-45k-tai-bhd-star-quang-trung-14974982146099.jpg"
+                                                        alt="bhdkhuyenami"></a></div>
+                                            <div class="item__text"><a class="item__title" href="/#">CGV &amp; BHD Star
+                                                    – Mua 2 vé tính tiền 1 khi thanh toán qua ZaloPay</a>
+                                                <p class="item__description">Áp dụng cho khách hàng mới của ZaloPay khi
+                                                    mua tại CGV HOẶC BHD Star các suất chiếu Thứ 6, Thứ 7, Chủ Nhật.</p>
+                                            </div>
+                                            <div class="item__icon">
+                                                <div class="icon__social d-inline"><i class="fa fa-thumbs-up"></i><span
+                                                        class="count__number">2</span></div>
+                                                <div class="icon__social d-inline"><i
+                                                        class="fa fa-comment-alt"></i><span
+                                                        class="count__number">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="row__item col-md-6 col-sm-12">
+                                            <div class="item__img"><a href="/#"><img class="img-fluid"
+                                                        src="https://s3img.vcdn.vn/123phim/2017/09/bhd-star-goi-phim-trang-yeu-thuong-15065869628551.jpg"
+                                                        alt="bhdstarthay"></a></div>
+                                            <div class="item__text"><a class="item__title" href="/#">Mua vé phim BHD
+                                                    Star - Nhận ngay Hoàn Tiền 20%</a>
+                                                <p class="item__description">Mua vé BHD Star thả ga, nhận ngay hoàn tiền
+                                                    xả láng 20% khi thanh toán qua ZaloPay.</p>
+                                            </div>
+                                            <div class="item__icon">
+                                                <div class="icon__social d-inline"><i class="fa fa-thumbs-up"></i><span
+                                                        class="count__number">0</span></div>
+                                                <div class="icon__social d-inline"><i
+                                                        class="fa fa-comment-alt"></i><span
+                                                        class="count__number">1</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row__below row">
+                                        <div class="row__left col-md-8">
+                                            <div class="left__below row">
+                                                <div class="left__item col-6">
+                                                    <div class="item__img"><img class="img-fluid"
+                                                            src="http://s3img.vcdn.vn/123phim/2017/05/bhd-uu-dai-grab-14943206847693.jpg"
+                                                            alt="212grapb"></div>
+                                                    <div class="item__text"><a class="item__title" href="/#">Chào bạn
+                                                            mới - BHD Star Mua 2 Tính Tiền 1</a>
+                                                        <p class="item__description">Ưu đãi cực chất: Mua 2 vé BHD Star
+                                                            chỉ cần trả tiền 1 vé khi thanh toán qua ZaloPay.</p>
+                                                    </div>
+                                                    <div class="item__icon">
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-thumbs-up"></i><span
+                                                                class="count__number">5</span></div>
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-comment-alt"></i><span
+                                                                class="count__number">1</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="left__item col-6">
+                                                    <div class="item__img"><img class="img-fluid"
+                                                            src="http://s3img.vcdn.vn/123phim/2017/06/zalo-pay-phim-hot-gia-hoi-14975106730615.jpg"
+                                                            alt="zaloshs"></div>
+                                                    <div class="item__text"><a class="item__title" href="/#">Vui Tết
+                                                            cùng ZaloPay - CGV Mua 1 Tặng 1</a>
+                                                        <p class="item__description">Ưu đãi mua 1 tặng 1 vé xem phim tại
+                                                            CGV cho khách hàng mới khi thanh toán bằng ZaloPay.</p>
+                                                    </div>
+                                                    <div class="item__icon">
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-thumbs-up"></i><span
+                                                                class="count__number">1</span></div>
+                                                        <div class="icon__social d-inline"><i
+                                                                class="fa fa-comment-alt"></i><span
+                                                                class="count__number">1</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row__right col-md-4 col-sm-12">
+                                            <ul>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="http://s3img.vcdn.vn/123phim/2017/03/galaxy-hoa-than-sieu-nhan-nhan-nhieu-uu-dai-14906148212096.jpg"
+                                                                alt="galaxys2"></div>
+                                                        <div class="item__title">CGV – 79.000Đ/vé cuối tuần khi thanh
+                                                            toán bằng ZaloPay!</div>
+                                                    </a></li>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="http://s3img.vcdn.vn/123phim/2017/06/123phim-ddc-mua-ve-online-nhan-qua-lien-tay-14969118909584.jpg"
+                                                                alt="ddcs22"></div>
+                                                        <div class="item__title">[123Phim] Thứ 6 Không Đen Tối - Ưu đãi
+                                                            huỷ diệt 11k/vé Anh Trai Yêu Quái</div>
+                                                    </a></li>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="http://s3img.vcdn.vn/123phim/2017/06/ddc-xem-phim-gia-re-truoc-10h-va-sau-22h-14968911599222.jpg"
+                                                                alt="ddc-morgana"></div>
+                                                        <div class="item__title">[123Phim] NHẬP MÃ 'PSM30K' - Giảm ngay
+                                                            30k khi đặt vé Pháp Sư Mù: Ai Chết Giơ Tay</div>
+                                                    </a></li>
+                                                <li class="right__item"><a class="item__link" href="/#">
+                                                        <div class="item__img"><img
+                                                                src="http://s3img.vcdn.vn/123phim/2017/06/ff4a2d1afce265cae66b8872197f1e5e.png"
+                                                                alt="hinhgido"></div>
+                                                        <div class="item__title">[Mega GS] Một đoá hoa thay ngàn lời yêu
+                                                        </div>
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="readMore"><button class="btn btn__readmore">XEM THÊM</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <section id="forMobile" class="forMobile background__homeapp">
+            <div class="container">
+                <div class="forMobile__content">
+                    <div class="row">
+                        <div class="forMobile__left col-md-6 col-sm-12">
+                            <div class="animated" style="animation-duration: 1s; opacity: 0;">
+                                <p class="text__app">Ứng dụng tiện lợi dành cho người yêu điện ảnh</p>
+                                <p class="text__description">Không chỉ đặt vé, bạn còn có thể bình luận phim, chấm điểm
+                                    rạp và đổi quà hấp dẫn.</p><button class="btn__app">App miễn phí - Tải về
+                                    ngay</button>
+                                <p class="text__appversion">Đã có hai phiên bản<a class="appforos__link" href="/#">
+                                        iOS</a> &amp; <a class="appforos__link" href="/#">Android</a></p>
+                            </div>
+                        </div>
+                        <div class="forMobile__right col-md-6 col-sm-12">
+                            <div class="animated" style="animation-duration: 1s; opacity: 0;">
+                                <div class="mobile__frame"><img class="img-fluid"
+                                        src="https://i.ibb.co/smKg7xh/mobile.png" alt="hinhanh">
+                                    <div class="owl-carousel mobileCarousel owl-carousel owl-theme owl-loaded owl-drag">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-1500px, 0px, 0px); transition: all 0.25s ease 0s; width: 4800px;">
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide13.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide14.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide16.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide3.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide4.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item active" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide5.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide8.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide10.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide13.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide14.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide16.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide3.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide4.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide5.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide8.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 300px;">
+                                                    <div class="item"><img class="img-fluid"
+                                                            src="https://tix.vn/app/assets/img/icons/slide/slide10.jpg"
+                                                            alt="hinhanh"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav disabled"><button type="button" role="presentation"
+                                                class="owl-prev"><span aria-label="Previous">‹</span></button><button
+                                                type="button" role="presentation" class="owl-next"><span
+                                                    aria-label="Next">›</span></button></div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    	<footer lang="vi" class="container" th:include="fragments/footer :: footer"></footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" 
+	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" 
+	crossorigin="anonymous" ></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.2/swiper-bundle.min.js" 
+    integrity="sha512-V1mUBtsuFY9SNr+ptlCQAlPkhsH0RGLcazvOCFt415od2Bf9/YkdjXxZCdhrP/TVYsPeAWuHa+KYLbjNbeEnWg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+	const swiper = new Swiper('.swiper', {
+	       slidesPerView: '5',
+	       spaceBetween: 0,
+	       autoplay: false,
+	       effect: 'coverflow',
+	       grabCursor: true,
+	       centeredSlidesBounds:true,
+	       slidesPerView: 'auto',
+	       coverflowEffect: {
+	           rotate: 30,
+	           stretch: 0,
+	           depth: 50,
+	           modifier: 1,
+	           slideShadows : true,
+	         },
+		  navigation: {
+		    nextEl: '.swiper-button-next',
+		    prevEl: '.swiper-button-prev',
+		  },
+		});
+    </script>
+    <script type="text/javascript">
+    
+	$(document).ready(function(){
+		
+		$('#v-pills-tabContent .nav-link').first().trigger('click');
+		function fillterSchedule(){
+			selectDate=$("#select-date").val()
+			$(".time__begin").each(function(){
+				if($(this).data("date")!=selectDate){
+					$(this).css("display","none");
+				}
+				else{
+					$(this).css("display","");
+					$(this).closest('.film__item').data('length',Number($(this).closest('.film__item').data('length'))+1)
+				}
+			})
+			$('.film__item').each(function(){
+				console.log($(this).data("length"))
+				if($(this).data("length")=='0') $(this).css("display","none");
+				else $(this).css("display","");
+			})
+		}
+		fillterSchedule();
+		$("#select-date").on("change",function(){
+			$('.film__item').each(function(){
+				$(this).data("length",0)
+			})
+			fillterSchedule();
+		})
+		$(".owl-carousel").owlCarousel({
+			    items:1,
+			    loop:true,
+			    margin:10,
+			    autoplay:true,
+			    autoplayTimeout:3000,
+			    autoplayHoverPause:true,
+			    nav:true
+			    
+			})
+		  });
+    </script>
+    <script>
+    !function (e) { function r(r) { for (var n, a, p = r[0], i = r[1], l = r[2], c = 0, s = []; c < p.length; c++)a = p[c], Object.prototype.hasOwnProperty.call(o, a) && o[a] && s.push(o[a][0]), o[a] = 0; for (n in i) Object.prototype.hasOwnProperty.call(i, n) && (e[n] = i[n]); for (f && f(r); s.length;)s.shift()(); return u.push.apply(u, l || []), t() } function t() { for (var e, r = 0; r < u.length; r++) { for (var t = u[r], n = !0, p = 1; p < t.length; p++) { var i = t[p]; 0 !== o[i] && (n = !1) } n && (u.splice(r--, 1), e = a(a.s = t[0])) } return e } var n = {}, o = { 1: 0 }, u = []; function a(r) { if (n[r]) return n[r].exports; var t = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(t.exports, t, t.exports, a), t.l = !0, t.exports } a.m = e, a.c = n, a.d = function (e, r, t) { a.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, a.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, a.t = function (e, r) { if (1 & r && (e = a(e)), 8 & r) return e; if (4 & r && "object" == typeof e && e && e.__esModule) return e; var t = Object.create(null); if (a.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: e }), 2 & r && "string" != typeof e) for (var n in e) a.d(t, n, function (r) { return e[r] }.bind(null, n)); return t }, a.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return a.d(r, "a", r), r }, a.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, a.p = "/"; var p = this.webpackJsonpmoviereactapp = this.webpackJsonpmoviereactapp || [], i = p.push.bind(p); p.push = r, p = p.slice(); for (var l = 0; l < p.length; l++)r(p[l]); var f = i; t() }([])</script>
+
+
+</body>
+</html>

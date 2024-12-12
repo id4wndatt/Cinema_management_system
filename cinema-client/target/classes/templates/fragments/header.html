@@ -1,0 +1,61 @@
+        <div th:fragment="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                <div class="navbar-brand"><a aria-current="page" class="active" href="/"
+                        style="text-decoration: none;"><img
+                            src="https://i0.wp.com/thegamehaus.com/wp-content/uploads/2020/05/Volibear_Emote.png?resize=256%2C256&amp;ssl=1"
+                            alt="logo"><span class="text-logo">CDD Movie</span></a></div>
+                <div class="header__mobile">
+                    <div class="header__login" style="display: flex;" th:if="${session.jwtResponse != null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/account/profile}"><img
+                                src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text" th:text="${session.jwtResponse.name}"></span></a>
+                        <a style="background: #ffc107;" class="btn"  th:href="@{/sign-out}">Đăng Xuất</a>
+                    </div>
+                    <div class="header__login" style="display: flex;" th:if="${session.jwtResponse == null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/login}"><img
+                                src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text">Đăng Nhập</span></a>
+                    </div>
+                </div><button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active"><a aria-current="page" class="nav-link active" href="/">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-film"></i><span>Giới Thiệu</span></div>
+                            </a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/branches}">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-project-diagram"></i><span>Cụm
+                                        Rạp</span></div>
+                            </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/#newsTab">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-newspaper"></i><span>Tin Tức</span>
+                                </div>
+                            </a></li>
+                        <li class="nav-item"><a aria-current="page" class="nav-link active" th:href="@{/movies}">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-mobile"></i><span>Phim</span>
+                                </div>
+                            </a></li>
+                        <li class="nav-item" th:if="${session.admin}">
+                        	<a aria-current="page" class="nav-link active" th:href="@{/admin}">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-mobile"></i>
+                                <span >Quản Lí</span>
+                                </div>
+                            </a>
+                         </li>
+                    </ul>
+                    <div class="header__login" th:if="${session.jwtResponse != null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/account/profile}">
+                        <img src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text" th:text="${session.jwtResponse.name}"></span></a>
+                        <a style="background: #ffc107;" class="btn" th:href="@{/sign-out}">Đăng Xuất</a>
+                    </div>
+                    <div class="header__login"  th:if="${session.jwtResponse == null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/login}"><img
+                                src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text">Đăng Nhập</span></a>
+                    </div>
+                    
+                </div>
+            </nav>
+        </div>

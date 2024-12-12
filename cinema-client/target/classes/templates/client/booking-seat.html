@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="logo192.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <title>CDD Movie</title>
+    <link th:href="@{/css/2.fd207d57.chunk.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.ffa69c8e.chunk.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" 
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+            .checkOut__left .bookSlot .bookSlot__content .chooseSlot .picking .slot__picking .slot__row .slot__item {
+                font-size: 31px !important;
+                font-weight: 600 !important;
+            }
+            .item--checked{
+            	cursor: no-drop !important;
+            	color:gold !important;
+            }
+            .item--hidden{
+            	cursor: no-drop !important;
+            	color:#FFFF !important;
+            }
+    </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1073.0" data-gr-ext-installed=""><noscript>You need to enable JavaScript to run
+        this app.</noscript>
+        <div id="root">
+        	<header lang="vi" th:include="fragments/header :: header"/>
+            <div class="container-fluid bg-light" style="padding-top: 20px;">
+                <div class="bookTicket__content row mt-5">
+                    <div class="checkOut__left col-md-9 col-sm-12 p-0">
+                        <div class="bookSlot">
+                            <div class="poster__film"
+                                style="width: 0;
+                                background-image: url(&quot;http://movie0706.cybersoft.edu.vn/hinhanh/john-wick-iiisssssssssxxxssssssssssssssssssss_gp09.jpg&quot;);">
+                                
+                            </div>
+                            <div class="bookSlot__content" style="overflow-x: scroll;">
+                                <div class="theater__info d-flex justify-content-between">
+                                    <div class="theater__img d-flex bg-light"><img alt="hinhanh"
+                                            src="http://movie0706.cybersoft.edu.vn/hinhanh/john-wick-iiisssssssssxxxssssssssssssssssssss_gp09.jpg">
+                                        <div class="theater__name">
+                                        	<span class="name">
+                                        		<span class="subname" th:text="${schedule.room.name}"></span>
+                                        	</span>
+                                        	<p class="showtime" th:text="'Ngày chiếu: '+${schedule.startDate}"></p>
+                                            <p class="showtime" th:text="'Giờ chiếu: '+${schedule.startTime}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="timeKeepSlot">
+                                        <p class="title__text" style="font-size: 14px;">Đếm ngược kết thúc lịch chiếu</p><span class="time" style="font-size: 22px;"></span>
+                                    </div>
+                                </div>
+                                <div class="chooseSlot" style="width: 850px">
+                                    <div class="screen__img"><img src="https://i.ibb.co/zWgWjtg/screen.png" alt="screen">
+                                    </div>
+                                    <div class="picking row" style="padding: 0 50px;">
+                                        <div class="slot__picking col-12">
+                                            <div class="slot__row">
+                                                <i th:each="seat: ${seats}" class="fa fa-couch slot__item " 
+                                                th:classappend="${seat.isActive} ? 
+                                                (${seat.isChecked} ? 'item--checked':
+                                                (${seat.isOccupied}==1 ? 'item--picked':
+                                                (${seat.isVip} ? 'item--vip':''))):
+                                                 'item--hiden'"
+                                                th:data-seat="${seat.name}" 
+                                                th:data-price="${seat.isVip}? ${schedule.price}+10000:${schedule.price}"
+                                                th:data-seat-id="${seat.id}"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="slot__detail row">
+                                        <div class="col-md-3 col-sm-6 col-xs-6"><i
+                                                class="fa fa-couch item--picking"></i><span class="slot__text">Ghế đang
+                                                chọn</span></div>
+                                        <div class="col-md-2 col-sm-6 col-xs-6"><i
+                                                class="fa fa-couch item--picked"></i><span class="slot__text">Ghế có người
+                                                </span></div>
+                                        <div class="col-md-2 col-sm-6 col-xs-6"><i
+                                                class="fa fa-couch item--regular"></i><span class="slot__text">Ghế Thường</span></div>
+                                        <div class="col-md-2 col-sm-6 col-xs-6"><i class="fa fa-couch item--vip"></i><span
+                                                class="slot__text">Ghế Vip</span></div>
+                                        <div class="col-md-3 col-sm-6 col-xs-6"><i class="fa fa-couch item--checked"></i><span
+                                                class="slot__text">Ghế của bạn</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkOut__right col-md-3 col-sm-12">
+                        <div class="checkout__form">
+                            <div class="total__price"><span class="price" data-price="0">0₫</span></div>
+                            <div class="film__info">
+                            	<span class="film__age--C" th:text="${schedule.room.name}"></span>
+                            	<span class="film__name" th:text="${schedule.movie.name}"></span>
+                                <p class="film__detail" th:text="${schedule.startDate}+' - '+${schedule.startTime}"></p>
+                                <p class="theater__name" th:text="${schedule.branch.name}"></p>
+                                <p class="film__address" th:text="${schedule.branch.diaChi}"></p>
+                            </div>
+                            <div class="count__slot">
+                                <div>Ghế đã chọn: </div>
+                                <div class="slot"></div>
+                            </div>
+                            <div class="discountForm d-flex justify-content-between">
+                                <div class="discountForm__content"><label class="label__name">Mã giảm giá</label><input
+                                        type="text" name="code" id="txtDiscountCode" class="form-control d-inline"
+                                        placeholder="Nhập tại đây..."></div><button id="btnCheckCode" class="btn mb-2">Áp
+                                    dụng</button>
+                            </div>
+                            <div class="payForm"><a class="pay__link" href="/#"><span class="title__text">Hình thức thanh
+                                        toán</span>
+                                    <p class="text__notification">Vui lòng chọn ghế để hiển thị phương thức thanh toán phù
+                                        hợp.</p>
+                                </a></div>
+                        </div>
+                        <div class="textNotification text-center"><i class="fa fa-info-circle text-danger mr-1"></i><span
+                                class="noti__text">Vé đã mua không thể đổi hoặc hoàn tiền Mã vé sẽ được gửi qua tin nhắn
+                                <span class="noti__link">ZMS</span> (tin nhắn Zalo) và <span class="noti__link">Email</span>
+                                đã nhập. </span></div>
+                        <div id="btnBook" class="btnBook" data-toggle="modal" data-target="#CreditModal">Thanh toán</div>
+                        <div>
+                            <div class="CreditModal modal fade bd-example-modal-lg" id="CreditModal" tabindex="-1"
+                                role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Thanh toán</h5><button type="button" class="close"
+                                                data-dismiss="modal" aria-label="Close"><span
+                                                    aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="PaymentForm">
+                                                <div class="row">
+                                                    <div class="credit-card col-md-6 col-sm-12 mb-2">
+                                                        <div class="rccs">
+                                                            <div class="rccs__card rccs__card--unknown">
+                                                                <div class="rccs__card--front">
+                                                                    <div class="rccs__card__background"></div>
+                                                                    <div class="rccs__issuer"></div>
+                                                                    <div class="rccs__cvc__front"></div>
+                                                                    <div class="rccs__number">•••• •••• •••• ••••</div>
+                                                                    <div class="rccs__name">YOUR NAME HERE</div>
+                                                                    <div class="rccs__expiry">
+                                                                        <div class="rccs__expiry__valid">valid thru</div>
+                                                                        <div class="rccs__expiry__value">••/••</div>
+                                                                    </div>
+                                                                    <div class="rccs__chip"></div>
+                                                                </div>
+                                                                <div class="rccs__card--back">
+                                                                    <div class="rccs__card__background"></div>
+                                                                    <div class="rccs__stripe"></div>
+                                                                    <div class="rccs__signature"></div>
+                                                                    <div class="rccs__cvc"></div>
+                                                                    <div class="rccs__issuer"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info-card col-md-6 col-sm-12">
+                                                        <form class="info-form" th:action="@{/booking}"  method="post">
+                                                            <div class="textb"><input type="tel" name="number"
+                                                                    class="w-100">
+                                                                <div class="placeholder">Card Number</div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-6" style="padding-right: 0px;">
+                                                                    <div class="textb"><input type="tel" name="expiry">
+                                                                        <div class="placeholder">Valid</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="textb"><input type="tel" name="cvc">
+                                                                        <div class="placeholder">CVC</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="textb"><input type="text" name="name">
+                                                                <div class="placeholder">Name</div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer"><button id="btn-booking" type="button" class="btn-style draw-border">Đặt
+                                                vé</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer lang="vi" class="container" th:include="fragments/footer :: footer"/>
+        </div>
+  <div id="success" class="swal-overlay notify " tabindex="-1">
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--success">
+    <span class="swal-icon--success__line swal-icon--success__line--long"></span>
+    <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
+
+    <div class="swal-icon--success__ring"></div>
+    <div class="swal-icon--success__hide-corners"></div>
+  </div><div class="swal-title" >Thanh toán thành công</div><div class="swal-text" style=""></div><div class="swal-footer"><div class="swal-button-container">
+
+    <button class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+  <div id="error" class="swal-overlay notify" tabindex="-1" >
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--error">
+    <div class="swal-icon--error__x-mark">
+      <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+      <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+    </div>
+  </div>
+  	<div id="text-error" class="swal-title" >Có người nhanh tay đặt chỗ của bạn</div>
+  	<div class="swal-footer">
+  <div class="swal-button-container">
+
+    <button  class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+    <div id="error-time" class="swal-overlay" tabindex="-1" >
+  <div class="swal-modal" role="dialog" aria-modal="true"><div class="swal-icon swal-icon--error">
+    <div class="swal-icon--error__x-mark">
+      <span class="swal-icon--error__line swal-icon--error__line--left"></span>
+      <span class="swal-icon--error__line swal-icon--error__line--right"></span>
+    </div>
+  </div>
+  	<div class="swal-title" >Lịch chiếu đã đóng, vui lòng chọn lịch chiếu khác!</div>
+  	<div class="swal-footer">
+  <div class="swal-button-container">
+
+    <button id="notify-error" class="swal-button swal-button--confirm">OK</button>
+
+    <div class="swal-button__loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" 
+	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" 
+	crossorigin="anonymous" ></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+        <script th:inline="javascript">
+        	
+            $(document).ready(function(){
+            	dataParameter=[]
+                const price=$(".price");
+              // css seat  
+                $(".slot__item").click(function(){
+                	const priceSeat=Number($(this).data("price"))
+                	
+                	const codeSeat=$(this).data("seat")
+                    const seatId=$(this).data("seatId")
+                    if(!$(this).hasClass("item--picked") && !$(this).hasClass("item--checked"))
+                    if($(this).hasClass("item--picking")){
+                        $(this).removeClass("item--picking");
+                        current=Number(price.data("price")-priceSeat)
+                        price.text(current.toLocaleString('en-US', {style : 'currency', currency : 'VND'}));
+                        price.data("price",current)
+                        $.each($(".mr-2"), function(index,seat){
+                            
+                            if(seat.textContent=="Ghế: "+codeSeat+","){
+                                seat.remove()
+                            }
+                        })
+                        
+                        dataParameter.splice(dataParameter.indexOf(seatId), 1);
+
+                    }
+                    else{
+                        $(this).addClass("item--picking");
+                        current=Number(price.data("price")+priceSeat)
+                        
+                        price.text(current.toLocaleString('en-US', {style : 'currency', currency : 'VND'}));
+                        price.data("price",current)
+                        $(".slot").append('<span class="mr-2">Ghế: '+codeSeat+',</span>')
+                        dataParameter.push(seatId)
+                        
+                    }
+                  });
+                //clock time
+               var clock= setInterval(function() {
+                    $('.time').text(remainingTime());
+                    if(remainingTime()==null){
+              		  clearInterval(clock);
+        			  $("#error-time").addClass("swal-overlay--show-modal")
+                    }
+                }, 1000);
+              //submit form booking
+            	$("#btn-booking").click(function(){
+            		if(dataParameter.length!=0){
+	                var json = JSON.stringify(
+	                		{
+	                			"scheduleId": [[${schedule.id}]],
+	                			"userId" :[[${session.jwtResponse.id}]],
+	                			"listSeatIds":dataParameter
+	                		});
+	                
+	                $.ajax({
+	                    type: "POST",
+	                    url: "http://localhost:8080/api/bills/create-new-bill",
+	                    headers: {"Authorization": "Bearer "+[[${session.jwtResponse.accessToken}]]},
+	                    data: json,
+	                    contentType: "application/json; charset=utf-8",
+	                    success:function(data){
+	                    	//change status of seat
+	                    	$(".item--picking").addClass("item--checked");
+	                    	$(".item--picking").removeClass("item--picking");
+	                    	
+	                    	//reset bill
+	                    	$(".slot").empty()
+	                    	price.data("price","0")
+	                        current=0
+	                        price.text(current.toLocaleString('en-US', {style : 'currency', currency : 'VND'}));
+	                    	
+	                    	//close all modal check-out
+	                    	$('#CreditModal').trigger('click');
+	                    	
+	                    	//show notify
+	                    	$("#success").addClass("swal-overlay--show-modal")
+
+							dataParameter=[]
+	              			
+	                    },
+	                    error: function (e) {
+	                    	$("#text-error").html(e.responseText)
+	                    	$("#error").addClass("swal-overlay--show-modal")
+	                        $("button").click(function(e){
+	                        	location.reload(true);
+	                        });
+	                    }
+	                   	});
+            		}
+            		else{
+            			$("#text-error").html("Bạn chưa chọn chỗ ngồi!")
+            			$("#error").addClass("swal-overlay--show-modal")
+            		}
+                });
+            	//close notify
+                $(".notify").click(function(e){
+                	if(remainingTime()!=null)
+                		$(this).removeClass("swal-overlay--show-modal");
+                });
+        		$("#notify-error").click(function(){
+        			window.location.href ='/';
+        		})
+              });
+            function remainingTime() {
+            	  const today = new Date();
+            	  const dateSchedule=new Date([[${schedule.startDate}+' '+${schedule.startTime}]])
+            	  seconds=Math.floor((dateSchedule-today)/1000);
+            	  if(seconds>0){
+	            	  var h = Math.floor(seconds/3600);
+	            	  var m = Math.floor((seconds%3600)/60);
+	            	  var s = seconds- h*3600-m*60;
+            	  }
+            	  else{
+        			  return null
+            	  }
+            	  return  h + " giờ " + m + " phút " + s+" giây ";
+            	}
+
+            
+        </script>
+    <script>
+    !function (e) { function r(r) { for (var n, a, p = r[0], i = r[1], l = r[2], c = 0, s = []; c < p.length; c++)a = p[c], Object.prototype.hasOwnProperty.call(o, a) && o[a] && s.push(o[a][0]), o[a] = 0; for (n in i) Object.prototype.hasOwnProperty.call(i, n) && (e[n] = i[n]); for (f && f(r); s.length;)s.shift()(); return u.push.apply(u, l || []), t() } function t() { for (var e, r = 0; r < u.length; r++) { for (var t = u[r], n = !0, p = 1; p < t.length; p++) { var i = t[p]; 0 !== o[i] && (n = !1) } n && (u.splice(r--, 1), e = a(a.s = t[0])) } return e } var n = {}, o = { 1: 0 }, u = []; function a(r) { if (n[r]) return n[r].exports; var t = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(t.exports, t, t.exports, a), t.l = !0, t.exports } a.m = e, a.c = n, a.d = function (e, r, t) { a.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, a.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, a.t = function (e, r) { if (1 & r && (e = a(e)), 8 & r) return e; if (4 & r && "object" == typeof e && e && e.__esModule) return e; var t = Object.create(null); if (a.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: e }), 2 & r && "string" != typeof e) for (var n in e) a.d(t, n, function (r) { return e[r] }.bind(null, n)); return t }, a.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return a.d(r, "a", r), r }, a.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, a.p = "/"; var p = this.webpackJsonpmoviereactapp = this.webpackJsonpmoviereactapp || [], i = p.push.bind(p); p.push = r, p = p.slice(); for (var l = 0; l < p.length; l++)r(p[l]); var f = i; t() }([])</script>
+
+
+</div>
+</body>
+</html>
